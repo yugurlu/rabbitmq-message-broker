@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const emailPublisher = require('./publisher')
+const emailPublisher = require('./services/rabbitmq/publisher/publisher')
+require('./services/rabbitmq/consumer/consumer')
 
 app.use(bodyParser.json())
 
@@ -19,3 +20,5 @@ app.post('/send-email', async (req, res) => {
 app.listen(3000, () => {
   console.log('Listening on port 3000')
 })
+
+module.exports = app;
